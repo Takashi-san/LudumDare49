@@ -59,13 +59,32 @@ public class MusicSheetFile {
             try {
                 SuitType suitType = (SuitType) Enum.Parse(typeof(SuitType), line[0], true);
                 MusicNoteType noteType = (MusicNoteType) Enum.Parse(typeof(MusicNoteType), line[1], true);
-                // TODO converter o hit time em um valor do tipo que vamos utilizar!
-                p_musicSheet.AddNote(suitType, noteType, line[2]);
+                int hitTime = GetMillisecondsTime(line[2]);
+                p_musicSheet.AddNote(suitType, noteType, hitTime);
             }
             catch {
-                Debug.LogWarning($"[MusicSheetFile] Nota incorreta em: {Name}");
+                Debug.LogError($"[MusicSheetFile] Nota incorreta em: {Name}");
             }
         }
+    }
+
+    int GetMillisecondsTime(string p_data) {
+        string[] timeData = p_data.Split(':');
+        if (timeData.Length != 3) {
+            return 0;
+        }
+
+        int result = 0;
+        try {
+            result += int.Parse(timeData[2]);
+            result += int.Parse(timeData[1]) * 1000;
+            result += int.Parse(timeData[0]) * 1000 * 60;
+        }
+        catch {
+            Debug.LogError($"[MusicSheetFile] Hit time incorreto: {p_data}");
+        }
+
+        return result;
     }
 
     void PrintSCVData(List<List<string>> p_CSVData) {

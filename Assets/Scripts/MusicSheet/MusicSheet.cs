@@ -13,7 +13,7 @@ public class MusicSheet {
     string _name;
     Dictionary<SuitType, List<MusicNote>> _suitSheets = new Dictionary<SuitType, List<MusicNote>>();
     
-    public void AddNote(SuitType p_suitType, MusicNoteType p_noteType, string p_hitTime) {
+    public void AddNote(SuitType p_suitType, MusicNoteType p_noteType, int p_hitTime) {
         MusicNote musicNote = new MusicNote();
         musicNote.noteType = p_noteType;
         musicNote.hitTime = p_hitTime;
@@ -38,5 +38,5 @@ public class MusicSheet {
 [Serializable]
 public struct MusicNote {
     public MusicNoteType noteType;
-    public string hitTime;
+    public int hitTime;
 }
