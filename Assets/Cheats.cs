@@ -12,12 +12,8 @@ public class Cheats : MonoBehaviour
         debugWindow = new DebugWindow(this.ToString(), DebugContents);
     }
 
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F6))
-            _debug = true;
-    }
+    //Input
+    void OnCHEATS() => _debug = !_debug;
 
     bool _debug = false;
     private void OnGUI()
