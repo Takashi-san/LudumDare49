@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{3e54d5c4-6060-4842-b724-716c5d16bdf9}">
+		<property name="assetPath">
+			<value>Blunt Swing 1_1.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.1502947845804989</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c661a8b4-8750-40ec-93c9-2b5a6c11cc94}</destination>
+		</relationship>
+	</object>
+</objects>
