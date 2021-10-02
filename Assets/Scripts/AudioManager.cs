@@ -11,15 +11,44 @@ public class AudioManager
     {
         public string fmodPath;
         public FMOD.Studio.EventInstance EventInstance;
+
+        public bool GetParameter(string name)
+        {
+            EventInstance.getParameterByName(name, out float value);
+            return value != 0;
+        }
+
+        public void SetParameter(string name, bool value)
+        {
+            EventInstance.setParameterByName(name, value? 1 : 0);
+        }
+
+        public void ToggleParameter(string name)
+        {
+            EventInstance.getParameterByName(name, out float value);
+            if(value == 0)
+                EventInstance.setParameterByName(name, 1);
+            else
+                EventInstance.setParameterByName(name, 0);
+        }
     }
+
     public enum EAudioLayer { MUSIC, AMBIENCE }
 
     List<AudioPack> _tracks;
     Dictionary<object, List<AudioPack>> _soundEvents = new Dictionary<object, List<AudioPack>>();
-    bool _canChangeTrack;
+    bool _canChangeTrack = true;
 
     static AudioManager _instance;
-    public static AudioManager Instance => _instance == null ? _instance = new AudioManager() : _instance;  
+    public static AudioManager Instance => _instance == null ? _instance = new AudioManager() : _instance;
+
+    string[] _parameters = new string[]
+    {
+        "Hit Corda",
+        "Hit Madeira",
+        "Hit Metais",
+        "Hit Percussao"
+    };
 
     public AudioManager()
     {
@@ -30,6 +59,8 @@ public class AudioManager
         debugWindow.AddSession("SoundEvents:", DebugSoundEvents);
 #endif
     }
+
+    public AudioPack GetTrack(EAudioLayer audioLayer = EAudioLayer.MUSIC) => _tracks[(int)audioLayer];
 
     public void PlayTrack(string fmodEventPath, EAudioLayer audioLayer, FMOD.Studio.STOP_MODE mode = FMOD.Studio.STOP_MODE.IMMEDIATE)
     {
@@ -177,9 +208,10 @@ public class AudioManager
             description.getLength(out int length);
 
             debugWindow.ProgressBar("", $"{_tracks[(int)EAudioLayer.MUSIC].fmodPath} {(position / 1000.0).ToString("0.00")}/{(length / 1000.0).ToString("0.00")}", position / (float)length, new Color(0, 1, 1, .5f));
-            _tracks[(int)EAudioLayer.MUSIC].EventInstance.getParameterByName("LOOPS", out loopsValue);
-            loopsValue = debugWindow.HorizontalSlider($"Loops {(int)loopsValue}", loopsValue, 0, 5);
-            _tracks[(int)EAudioLayer.MUSIC].EventInstance.setParameterByName("LOOPS", loopsValue);
+
+
+            foreach(string parameter in _parameters)
+                _tracks[(int)EAudioLayer.MUSIC].SetParameter(parameter, debugWindow.Checkbox(parameter, _tracks[(int)EAudioLayer.MUSIC].GetParameter(parameter)));
         }
 
         debugWindow.Label($"Ambience: {(_tracks[(int)EAudioLayer.AMBIENCE] == null? "none" :_tracks[(int)EAudioLayer.AMBIENCE].fmodPath)}");
@@ -190,9 +222,6 @@ public class AudioManager
             description.getLength(out int length);
 
             debugWindow.ProgressBar("", $"{_tracks[(int)EAudioLayer.AMBIENCE].fmodPath} {(position / 1000.0).ToString("0.00")}/{(length / 1000.0).ToString("0.00")}", position / (float)length, new Color(0, 1, 1, .5f));
-            _tracks[(int)EAudioLayer.AMBIENCE].EventInstance.getParameterByName("LOOPS", out loopsValue);
-            loopsValue = debugWindow.HorizontalSlider($"Loops {(int)loopsValue}", loopsValue, 0, 5);
-            _tracks[(int)EAudioLayer.AMBIENCE].EventInstance.setParameterByName("LOOPS", loopsValue);
         }
     }
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{6e9f208b-d7b5-486a-a01c-eb07ff550f0a}">
+		<property name="name">
+			<value>Hit Madeira</value>
+		</property>
+		<relationship name="folder">
+			<destination>{9254d078-cbf0-465b-9431-346c6cdfab35}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{fe678721-372e-4f4d-b5cb-02ec847f12f6}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{fe678721-372e-4f4d-b5cb-02ec847f12f6}">
+		<property name="initialValue">
+			<value>1</value>
+		</property>
+	</object>
+</objects>

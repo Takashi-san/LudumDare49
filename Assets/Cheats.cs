@@ -30,7 +30,7 @@ public class Cheats : MonoBehaviour
     void DebugContents(System.Func<bool, int> nextLine)
     {
         if(debugWindow.Button("Play test sound"))
-            AudioManager.Instance.PlayOneShotSound(_audioTest, transform.position);
+            AudioManager.Instance.PlayTrack(_audioTest, AudioManager.EAudioLayer.MUSIC);
 
         if (debugWindow.Button("AudioManager"))
             AudioManager.Instance.debug = true;

@@ -409,7 +409,7 @@ MonoBehaviour:
   HasSourceProject: 0
   HasPlatforms: 1
   sourceProjectPath: Assets/Audio/testStudio/testStudio.fspro
-  sourceBankPath: Assets/Audio/testStudio/Build
+  sourceBankPath: Assets/Audio/Build
   SourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -431,7 +431,7 @@ MonoBehaviour:
   RealChannelSettings: []
   Plugins: []
   MasterBanks:
-  - Master
+  - Desktop/Master
   Banks: []
   BanksToLoad: []
   LiveUpdatePort: 9264

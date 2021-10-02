@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{a270ed7e-215d-4876-86af-91a67a1318a9}">
+		<property name="name">
+			<value>Hit Corda</value>
+		</property>
+		<relationship name="folder">
+			<destination>{9254d078-cbf0-465b-9431-346c6cdfab35}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{40d82e2e-7e03-4324-9b61-809f6a9f219d}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{40d82e2e-7e03-4324-9b61-809f6a9f219d}">
+		<property name="initialValue">
+			<value>1</value>
+		</property>
+	</object>
+</objects>
