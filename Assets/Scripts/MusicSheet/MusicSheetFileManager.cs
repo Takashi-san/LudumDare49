@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-public class MusicSheetFileManager : MonoBehaviour
+public class MusicSheetFileManager : SingletonMonobehaviour<MusicSheetFileManager>
 {
     public Action LoadedFiles;
     public List<MusicSheetFile> SheetFileList;
