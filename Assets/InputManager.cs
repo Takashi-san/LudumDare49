@@ -7,14 +7,14 @@ using UnityEngine.Events;
 public class InputManager : MonoBehaviour
 {
     [SerializeField] PlayerInput _playerInput;
-    event System.Action<ENaipes, InputAction.CallbackContext> _onAction;
+    event System.Action<SuitType, InputAction.CallbackContext> _onAction;
 
-    public void AddListener(System.Action<ENaipes, InputAction.CallbackContext> action)
+    public void AddListener(System.Action<SuitType, InputAction.CallbackContext> action)
     {
         _onAction += action;
     }
 
-    public void RemoveListener(System.Action<ENaipes, InputAction.CallbackContext> action)
+    public void RemoveListener(System.Action<SuitType, InputAction.CallbackContext> action)
     {
         _onAction -= action;
     }
@@ -39,16 +39,16 @@ public class InputManager : MonoBehaviour
         switch (context.action.name)
         {
             case "corda":
-                _onAction?.Invoke(ENaipes.CORDA, context);
+                _onAction?.Invoke(SuitType.Chord, context);
                 break;
             case "madeira":
-                _onAction?.Invoke(ENaipes.MADEIRA, context);
+                _onAction?.Invoke(SuitType.Wood, context);
                 break;
             case "metais":
-                _onAction?.Invoke(ENaipes.METAIS, context);
+                _onAction?.Invoke(SuitType.Metal, context);
                 break;
             case "percussao":
-                _onAction?.Invoke(ENaipes.PERCUSSAO, context);
+                _onAction?.Invoke(SuitType.Percussion, context);
                 break;
         }
     }

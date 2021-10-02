@@ -9,7 +9,7 @@ public class MusicSheet {
         set { _name = value; }
     }
     public Dictionary<SuitType, List<MusicNote>> SuitSheets => _suitSheets;
-    
+    public string FileName;
     string _name;
     Dictionary<SuitType, List<MusicNote>> _suitSheets = new Dictionary<SuitType, List<MusicNote>>();
     

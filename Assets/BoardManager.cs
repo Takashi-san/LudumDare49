@@ -10,7 +10,7 @@ public class BoardManager : MonoBehaviour
     {
         _naipes = new List<InputUIController>(GetComponentsInChildren<InputUIController>());
     }
-    public void PressNaipe(ENaipes naipe, bool pressed)
+    public void PressNaipe(SuitType naipe, bool pressed)
     {
         Debug.Log("PressNaipe");
         _naipes[(int)naipe].SetPress(pressed);

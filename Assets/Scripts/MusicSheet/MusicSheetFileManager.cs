@@ -19,6 +19,7 @@ public class MusicSheetFileManager : SingletonMonobehaviour<MusicSheetFileManage
             List<List<string>> fileData = CSVFileManager.GetCSVData(file);
             MusicSheetFile musicSheetFile = new MusicSheetFile(fileData);
             if (musicSheetFile.IsValid) {
+                musicSheetFile.FileName = file.name;
                 _sheetFileList.Add(musicSheetFile);
             }
         }

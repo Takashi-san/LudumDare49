@@ -30,6 +30,7 @@ Transform:
   m_Children:
   - {fileID: 7405617190825041900}
   - {fileID: 1724814106938920960}
+  - {fileID: 8908665173815357438}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -47,6 +48,110 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _boardManager: {fileID: 1534885460970121810}
   _inputManager: {fileID: 8906872953933155919}
+  _musicSheetManager: {fileID: 8908665173815357439}
+  _allMusicData: {fileID: 11400000, guid: cd55de9d4a53006418d4c552b2d96793, type: 2}
+  _musicIndex: 0
+  _badInputDistance: 100
+  _goodInputDistance: 50
+  _perfectInputDistance: 20
+  _debug: 0
+--- !u!1001 &1990217300063246588
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2946691669364567664}
+    m_Modifications:
+    - target: {fileID: 6935336513822734082, guid: ecb39ba73a97fce4e8be63e68cae8e15,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935336513822734082, guid: ecb39ba73a97fce4e8be63e68cae8e15,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935336513822734082, guid: ecb39ba73a97fce4e8be63e68cae8e15,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935336513822734082, guid: ecb39ba73a97fce4e8be63e68cae8e15,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935336513822734082, guid: ecb39ba73a97fce4e8be63e68cae8e15,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935336513822734082, guid: ecb39ba73a97fce4e8be63e68cae8e15,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935336513822734082, guid: ecb39ba73a97fce4e8be63e68cae8e15,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935336513822734082, guid: ecb39ba73a97fce4e8be63e68cae8e15,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935336513822734082, guid: ecb39ba73a97fce4e8be63e68cae8e15,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935336513822734082, guid: ecb39ba73a97fce4e8be63e68cae8e15,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935336513822734082, guid: ecb39ba73a97fce4e8be63e68cae8e15,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935336513822734204, guid: ecb39ba73a97fce4e8be63e68cae8e15,
+        type: 3}
+      propertyPath: m_Name
+      value: MusicSheetPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935336513822734205, guid: ecb39ba73a97fce4e8be63e68cae8e15,
+        type: 3}
+      propertyPath: _musicFileList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935336513822734205, guid: ecb39ba73a97fce4e8be63e68cae8e15,
+        type: 3}
+      propertyPath: _musicFileList.Array.data[0]
+      value: 
+      objectReference: {fileID: 4900000, guid: c8ac93b8a05253a4993aaddd044952e2, type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ecb39ba73a97fce4e8be63e68cae8e15, type: 3}
+--- !u!4 &8908665173815357438 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6935336513822734082, guid: ecb39ba73a97fce4e8be63e68cae8e15,
+    type: 3}
+  m_PrefabInstance: {fileID: 1990217300063246588}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8908665173815357439 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6935336513822734083, guid: ecb39ba73a97fce4e8be63e68cae8e15,
+    type: 3}
+  m_PrefabInstance: {fileID: 1990217300063246588}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7554dedad865e65408b91525176d8839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5756076501918166027
 PrefabInstance:
   m_ObjectHideFlags: 0

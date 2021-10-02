@@ -30,6 +30,12 @@ public class Cheats : MonoBehaviour
 
         if (debugWindow.Button("AudioManager"))
             AudioManager.Instance.debug = true;
+
+        if (debugWindow.Button("GameManager"))
+            FindObjectOfType<GameplayManager>().debug = true;
+
+        if (debugWindow.Button("MusicSheetManager"))
+            FindObjectOfType<MusicSheetManager>().debug = true;
     }
 #endif
 }

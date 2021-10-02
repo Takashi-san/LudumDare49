@@ -1,10 +1,4 @@
-public enum ENaipes
-{
-    CORDA,
-    MADEIRA,
-    METAIS,
-    PERCUSSAO
-}
+
 #region MusicSheet
 
 public enum SuitType {

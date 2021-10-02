@@ -18,6 +18,8 @@ public class MusicSheetFile {
         }
     }
 
+    public string FileName;
+
     List<List<string>> _CSVData;
     
     public MusicSheetFile(List<List<string>> p_CSVData) {
