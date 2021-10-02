@@ -2,9 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
+
 public class InputManager : MonoBehaviour
 {
     [SerializeField] PlayerInput _playerInput;
+    event System.Action<ENaipes, InputAction.CallbackContext> _onAction;
+
+    public void AddListener(System.Action<ENaipes, InputAction.CallbackContext> action)
+    {
+        _onAction += action;
+    }
+
+    public void RemoveListener(System.Action<ENaipes, InputAction.CallbackContext> action)
+    {
+        _onAction -= action;
+    }
 
     private void OnValidate()
     {
@@ -22,52 +35,21 @@ public class InputManager : MonoBehaviour
 
     void OnActionTriggered(InputAction.CallbackContext context)
     {
+        Debug.Log($"Action triggered {context.action.name}");
         switch (context.action.name)
         {
             case "corda":
-                OnCorda(context);
+                _onAction?.Invoke(ENaipes.CORDA, context);
                 break;
             case "madeira":
-                OnMadeira(context);
+                _onAction?.Invoke(ENaipes.MADEIRA, context);
                 break;
             case "metais":
-                OnMetais(context);
+                _onAction?.Invoke(ENaipes.METAIS, context);
                 break;
             case "percussao":
-                OnPercussao(context);
+                _onAction?.Invoke(ENaipes.PERCUSSAO, context);
                 break;
         }
-    }
-
-    void OnCorda(InputAction.CallbackContext context)
-    {
-        if (context.started)
-            Debug.Log("Corda pressed");
-        if (context.canceled)
-            Debug.Log("Corda released");
-    }
-
-    void OnMadeira(InputAction.CallbackContext context)
-    {
-        if (context.started)
-            Debug.Log("Madeira pressed");
-        if (context.canceled)
-            Debug.Log("Madeira released");
-    }
-
-    void OnMetais(InputAction.CallbackContext context)
-    {
-        if (context.started)
-            Debug.Log("Metais pressed");
-        if (context.canceled)
-            Debug.Log("Metais released");
-    }
-
-    void OnPercussao(InputAction.CallbackContext context)
-    {
-        if (context.started)
-            Debug.Log("Percussao pressed");
-        if (context.canceled)
-            Debug.Log("Percussao released");
     }
 }
