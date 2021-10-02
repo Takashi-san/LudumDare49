@@ -6,10 +6,10 @@ public class CSVFileManager
     const char lineSeparator = '\n';
     const char fieldSeparator = ',';
     
-    public static List<List<string>> GetCSVData(TextAsset CSVFile) {
+    public static List<List<string>> GetCSVData(TextAsset p_CSVFile) {
         List<List<string>> data = new List<List<string>>();
         
-        string[] fileData = CSVFile.text.Split(lineSeparator);
+        string[] fileData = p_CSVFile.text.Split(lineSeparator);
         foreach (var lineData in fileData) {
             List<string> line = new List<string>();
             

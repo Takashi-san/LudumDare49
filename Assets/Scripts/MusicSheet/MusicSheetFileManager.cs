@@ -5,9 +5,10 @@ using UnityEngine;
 public class MusicSheetFileManager : SingletonMonobehaviour<MusicSheetFileManager>
 {
     public Action LoadedFiles;
-    public List<MusicSheetFile> SheetFileList;
+    public List<MusicSheetFile> SheetFileList => _sheetFileList;
     
     [SerializeField] List<TextAsset> _musicFileList = new List<TextAsset>();
+    List<MusicSheetFile> _sheetFileList = new List<MusicSheetFile>();
     
     void Start() {
         LoadAllFiles();
@@ -18,7 +19,7 @@ public class MusicSheetFileManager : SingletonMonobehaviour<MusicSheetFileManage
             List<List<string>> fileData = CSVFileManager.GetCSVData(file);
             MusicSheetFile musicSheetFile = new MusicSheetFile(fileData);
             if (musicSheetFile.IsValid) {
-                SheetFileList.Add(musicSheetFile);
+                _sheetFileList.Add(musicSheetFile);
             }
         }
 
