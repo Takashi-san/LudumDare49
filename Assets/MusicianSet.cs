@@ -13,7 +13,7 @@ public class MusicianSet : MonoBehaviour
         _musicianAnimators.AddRange(GetComponentsInChildren<Animator>());
     }
 
-    void PlaySet(bool play)
+    public void PlaySet(bool play)
     {
         foreach (Animator animator in _musicianAnimators)
             animator.SetBool("PLAY", play);

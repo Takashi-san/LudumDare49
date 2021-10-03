@@ -8,7 +8,7 @@ public class MusicSheetFileManager : SingletonMonobehaviour<MusicSheetFileManage
     public List<MusicSheetFile> SheetFileList => _sheetFileList;
     
     // [SerializeField] List<MusicAssetsData> _musicFileList = new List<MusicAssetsData>();
-    [SerializeField] AllMusicData _musicFileList = new AllMusicData();
+    [SerializeField] AllMusicData _musicFileList;
     List<MusicSheetFile> _sheetFileList = new List<MusicSheetFile>();
     
     void Start() {

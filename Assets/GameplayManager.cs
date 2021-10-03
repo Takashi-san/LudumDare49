@@ -32,6 +32,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] int _missedPoints;
     [SerializeField] int _penaltyPoints;
     [SerializeField] int _maxLife;
+    [SerializeField] MusicianSet[] _musicianSets;
     [SerializeField, FMODUnity.EventRef] string _preRunningSound;
     [SerializeField, FMODUnity.EventRef] string _goodFeedback;
     [SerializeField, FMODUnity.EventRef] string _fakeNoteFeedback;
@@ -132,6 +133,7 @@ public class GameplayManager : MonoBehaviour
                         pair.Value.noteType != MusicNoteType.Avoid)                         //not bad input
                         { 
                             AudioManager.Instance.MuteSuitType(pair.Key, true);
+                            _musicianSets[(int)pair.Key].PlaySet(false);
                         }
 
 
@@ -242,6 +244,7 @@ public class GameplayManager : MonoBehaviour
 
                 AudioManager.Instance.PlayOneShotSound(_fakeNoteFeedback, transform.position);
                 AudioManager.Instance.MuteSuitType(naipe, true);
+                _musicianSets[(int)naipe].PlaySet(false);
             }
             else
             {
@@ -266,6 +269,7 @@ public class GameplayManager : MonoBehaviour
 
                 Debug.Log("valid input, reactivate audio");
                 AudioManager.Instance.MuteSuitType(naipe, false);
+                _musicianSets[(int)naipe].PlaySet(true);
                 AudioManager.Instance.PlayOneShotSound(_goodFeedback, transform.position);
             }
 
