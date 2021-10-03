@@ -19,7 +19,7 @@ public class MusicSheetFile {
     }
 
     public string FileName;
-    public MusicAssetsData Assets;
+    public AllMusicData.MusicData MusicData;
 
     List<List<string>> _CSVData;
     
