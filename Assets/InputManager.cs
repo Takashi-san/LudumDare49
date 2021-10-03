@@ -8,7 +8,7 @@ public class InputManager : MonoBehaviour
 {
     [SerializeField] PlayerInput _playerInput;
     event System.Action<SuitType, InputAction.CallbackContext> _onAction;
-
+    public System.Action<SuitType, InputAction.CallbackContext> OnAction { get => _onAction; set => _onAction = value; }
     public void AddListener(System.Action<SuitType, InputAction.CallbackContext> action)
     {
         _onAction += action;

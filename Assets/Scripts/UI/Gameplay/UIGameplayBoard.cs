@@ -19,12 +19,12 @@ public class UIGameplayBoard : MonoBehaviour {
     // Dictionary<SuitType, UIGameplayInput> _inputFeedbackDict = new Dictionary<SuitType, UIGameplayInput>();
     Action<SuitType> _inputAction;
 
-    public void Setup(MusicSheet p_musicSheet, int p_musicLength, Action<int> p_musicProgressAction, Action<SuitType, bool> p_inputAction, Action<SuitType, MusicNote> p_destroyNoteAction) {
+    public void Setup(MusicSheet p_musicSheet, int p_musicLength, GameplayManager gameplayManager) {
         _musicSheet = p_musicSheet;
         _musicLength = p_musicLength;
-        p_inputAction += NewInput;
-        p_destroyNoteAction += DestroyNote;
-        p_musicProgressAction += MusicProgressUpdate;
+        gameplayManager._onInputChange += NewInput;
+        gameplayManager._onDestroyNote += DestroyNote;
+        gameplayManager._onTimelineChange += MusicProgressUpdate;
 
         SetupTimelines();
         SetupInputs();
@@ -51,6 +51,7 @@ public class UIGameplayBoard : MonoBehaviour {
     }
 
     void MusicProgressUpdate(int p_musicProgress) {
+        Debug.Log("Called");
         foreach (var timeline in _timelineDict) {
             timeline.Value.MusicProgressUpdate(p_musicProgress);
         }

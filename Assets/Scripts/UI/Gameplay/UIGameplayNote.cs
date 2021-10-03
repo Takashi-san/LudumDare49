@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UIGameplayNote : MonoBehaviour {
-    const float PIXEL_PER_MILLISECOND = 0.5f;
+    const float PIXEL_PER_MILLISECOND = 0.2f;
 
     [SerializeField] RectTransform _rectTransform = null;
 
@@ -23,6 +23,7 @@ public class UIGameplayNote : MonoBehaviour {
 
     public void MusicProgressUpdate(int p_musicProgress) {
         float musicDiff = _musicNote.hitTime - p_musicProgress;
-        transform.position = Vector3.right * musicDiff * PIXEL_PER_MILLISECOND;
+        Debug.Log($"musicDiff {musicDiff} p_musicProgress {p_musicProgress}");
+        _rectTransform.anchoredPosition = Vector2.right * musicDiff * PIXEL_PER_MILLISECOND;
     }
 }

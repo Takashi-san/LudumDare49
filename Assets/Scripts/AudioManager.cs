@@ -62,6 +62,11 @@ public class AudioManager
 
     public AudioPack GetTrack(EAudioLayer audioLayer = EAudioLayer.MUSIC) => _tracks[(int)audioLayer];
 
+    public FMOD.Studio.EventDescription GetMusicInfo(string fmodEventPath)
+    {
+        return FMODUnity.RuntimeManager.GetEventDescription(fmodEventPath);
+    }
+
     public void PlayTrack(string fmodEventPath, EAudioLayer audioLayer, FMOD.Studio.STOP_MODE mode = FMOD.Studio.STOP_MODE.IMMEDIATE)
     {
         if (string.IsNullOrEmpty(fmodEventPath)) return;

@@ -19,6 +19,7 @@ public class GameplayManager : MonoBehaviour
     GameState _gameState = GameState.PRE_RUNNING;
     
     [SerializeField] BoardManager _boardManager;
+    [SerializeField] UIGameplayBoard _uIGameplayBoard;
     [SerializeField] InputManager _inputManager;
     [SerializeField] MusicSheetManager _musicSheetManager;
 
@@ -28,6 +29,10 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] float _goodInputDistance;
     [SerializeField] float _perfectInputDistance;
     AudioManager.AudioPack _playingTrack;
+
+    public System.Action<int> _onTimelineChange;
+    public System.Action<SuitType, bool> _onInputChange;
+    public System.Action<SuitType, MusicNote> _onDestroyNote;
 
     void Awake()
     {
@@ -45,15 +50,27 @@ public class GameplayManager : MonoBehaviour
         _inputManager.RemoveListener(OnAction);
     }
 
-
+    void Start()
+    {
+        AllMusicData.MusicData musicData = _allMusicData.GetMusic(_musicIndex);
+        MusicSheet musicSheet = MusicSheetManager.Instance.MusicSheetList.Find( s => s.FileName == musicData.Name);
+        AudioManager.Instance.GetMusicInfo(musicData.MusicRef).getLength(out int length);
+        Debug.Log("Do setup");
+        _uIGameplayBoard.Setup(musicSheet, length, this);
+    }
 
     private void Update()
     {
+        
         switch (_gameState)
         {
             case GameState.PRE_RUNNING:
                 break;
             case GameState.RUNNING:
+                AudioManager.Instance.GetTrack(AudioManager.EAudioLayer.MUSIC).EventInstance.getTimelinePosition(out int timelinePosition);
+                Debug.Log($"before event timelinePosition {timelinePosition}");
+                _onTimelineChange?.Invoke(timelinePosition);
+                Debug.Log("after event");
                 break;
             case GameState.POS_RUNNING:
                 break;
@@ -89,6 +106,7 @@ public class GameplayManager : MonoBehaviour
     void OnAction(SuitType naipe, InputAction.CallbackContext context)
     {
         Debug.Log("OnAction");
+        _onInputChange?.Invoke(naipe, context.started || context.performed);
 
         if (context.started)
         {
@@ -150,6 +168,7 @@ public class GameplayManager : MonoBehaviour
                     Debug.Log("Bad");
                 }
             }
+            _onDestroyNote?.Invoke(naipe, note);
         }
     }
 
