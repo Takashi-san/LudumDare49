@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{1d86bd1c-7b53-4d6c-a1e3-2bfd8f86bfe2}">
+		<property name="assetPath">
+			<value>ErroNotaBase.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.31510204081632653</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{d83697f1-54a9-4752-b571-03ef264cbac0}</destination>
+		</relationship>
+	</object>
+</objects>

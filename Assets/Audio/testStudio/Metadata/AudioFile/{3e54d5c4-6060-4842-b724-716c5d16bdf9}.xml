@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.00.00">
+<objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{3e54d5c4-6060-4842-b724-716c5d16bdf9}">
 		<property name="assetPath">
 			<value>Blunt Swing 1_1.wav</value>
@@ -14,7 +14,7 @@
 			<value>1.1502947845804989</value>
 		</property>
 		<relationship name="masterAssetFolder">
-			<destination>{c661a8b4-8750-40ec-93c9-2b5a6c11cc94}</destination>
+			<destination>{d83697f1-54a9-4752-b571-03ef264cbac0}</destination>
 		</relationship>
 	</object>
 </objects>

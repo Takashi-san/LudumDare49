@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{8ed6d5a3-f9c1-48e3-900c-dc811a309ce0}">
+		<property name="assetPath">
+			<value>dimazz_corda_88_6-8.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>127.29902494331066</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{d83697f1-54a9-4752-b571-03ef264cbac0}</destination>
+		</relationship>
+	</object>
+</objects>
