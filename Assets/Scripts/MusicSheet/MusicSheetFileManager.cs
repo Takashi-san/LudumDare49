@@ -7,7 +7,7 @@ public class MusicSheetFileManager : SingletonMonobehaviour<MusicSheetFileManage
     public Action LoadedFiles;
     public List<MusicSheetFile> SheetFileList => _sheetFileList;
     
-    [SerializeField] List<TextAsset> _musicFileList = new List<TextAsset>();
+    [SerializeField] List<MusicAssetsData> _musicFileList = new List<MusicAssetsData>();
     List<MusicSheetFile> _sheetFileList = new List<MusicSheetFile>();
     
     void Start() {
@@ -16,14 +16,21 @@ public class MusicSheetFileManager : SingletonMonobehaviour<MusicSheetFileManage
 
     void LoadAllFiles() {
         foreach (var file in _musicFileList) {
-            List<List<string>> fileData = CSVFileManager.GetCSVData(file);
+            List<List<string>> fileData = CSVFileManager.GetCSVData(file.textAsset);
             MusicSheetFile musicSheetFile = new MusicSheetFile(fileData);
             if (musicSheetFile.IsValid) {
-                musicSheetFile.FileName = file.name;
+                musicSheetFile.FileName = file.textAsset.name;
+                musicSheetFile.Assets = file;
                 _sheetFileList.Add(musicSheetFile);
             }
         }
 
         LoadedFiles?.Invoke();
     }
+}
+
+[Serializable]
+public struct MusicAssetsData {
+    [SerializeField] public TextAsset textAsset;
+    [SerializeField, FMODUnity.EventRef] public string music;
 }
