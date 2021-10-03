@@ -7,8 +7,9 @@ public class UIGameplayBackground : MonoBehaviour {
     [SerializeField] List<UIGameplayDestructableElement> _destructableElements = new List<UIGameplayDestructableElement>();
 
     void Start() {
-        // TODO procurar gameplay manager e dar subscribe.
-        // FindObjectOfType<GameplayManager>()?.lifeAction += UpdateLife;
+        GameplayManager gameplayManager = FindObjectOfType<GameplayManager>();
+        if(gameplayManager != null)
+            gameplayManager.OnLifeChange += UpdateLife;
     }
 
     void UpdateLife(int p_life) {

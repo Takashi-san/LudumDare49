@@ -39,10 +39,10 @@ public class GameplayManager : MonoBehaviour
     void AddPoints(int points)
     {
         _currentLife = Mathf.Clamp(_currentLife + points, -1, _maxLife);
-        _onLifeChange?.Invoke(_currentLife);
+        OnLifeChange?.Invoke(_currentLife);
     }
 
-    public System.Action<int> _onLifeChange;
+    public System.Action<int> OnLifeChange;
     public System.Action<int> _onTimelineChange;
     public System.Action<SuitType, bool> _onInputChange;
     public System.Action<SuitType, MusicNote> _onDestroyNote;
@@ -73,7 +73,7 @@ public class GameplayManager : MonoBehaviour
         _uIGameplayBoard.Setup(musicSheet, length, this);
 
         _currentLife = _maxLife;
-        _onLifeChange?.Invoke(_currentLife);
+        OnLifeChange?.Invoke(_currentLife);
     }
 
     Dictionary<SuitType, MusicNote> _nearestNotes = new Dictionary<SuitType, MusicNote>();
@@ -88,10 +88,14 @@ public class GameplayManager : MonoBehaviour
             case GameState.RUNNING:
                 AudioManager.Instance.GetTrack(AudioManager.EAudioLayer.MUSIC).EventInstance.getTimelinePosition(out int timelinePosition);
                 UpdateNearest(timelinePosition);
-                
+
                 foreach (KeyValuePair<SuitType, MusicNote> pair in _nearestNotes)
-                    if (pair.Value.hitTime < timelinePosition + _perfectInputDistance)
-                        AudioManager.Instance.MuteSuitType(pair.Key, true);
+                    if (pair.Value.hitTime != 0 &&                                          //ended
+                        pair.Value.hitTime < timelinePosition + _perfectInputDistance &&    //after perfect timing
+                        pair.Value.noteType != MusicNoteType.Avoid)                         //not bad input
+                        { 
+                            AudioManager.Instance.MuteSuitType(pair.Key, true);
+                        }
 
 
                 _onTimelineChange?.Invoke(timelinePosition);
@@ -116,11 +120,15 @@ public class GameplayManager : MonoBehaviour
 
         if (_nearestNotes.TryGetValue(suitType, out MusicNote toStepNote))
         {
-            //Was not hit/updated with input
-            if (note.hitTime > toStepNote.hitTime)
+            
+            if (note.hitTime > toStepNote.hitTime &&        // When hit by input, already updated to next
+                toStepNote.hitTime != 0)                      // ended timeline
             {
-                Debug.Log($"Missed note {suitType} at {toStepNote.hitTime}, updating to {note.hitTime}");
-                AddPoints(_missedPoints);
+                if (toStepNote.noteType != MusicNoteType.Avoid)
+                {
+                    Debug.Log($"Missed note {suitType} at {toStepNote.hitTime}, updating to {note.hitTime}");
+                    AddPoints(_missedPoints);
+                }
 
                 _nearestNotes[suitType] = note;
             }
@@ -186,6 +194,8 @@ public class GameplayManager : MonoBehaviour
             {
                 Debug.Log("BOOOM" + debugString);
                 AddPoints(_penaltyPoints);
+                Debug.Log("deactivate audio");
+
                 AudioManager.Instance.MuteSuitType(naipe, true);
             }
             else
@@ -209,11 +219,14 @@ public class GameplayManager : MonoBehaviour
                     AddPoints(_simpleHitPoints);
                 }
 
+                Debug.Log("valid input, reactivate audio");
                 AudioManager.Instance.MuteSuitType(naipe, false);
             }
 
             AllMusicData.MusicData musicData = _allMusicData.GetMusic(_musicIndex);
-            _nearestNotes[naipe] = _musicSheetManager.GetNearestNote(musicData.Name, naipe, _nearestNotes[naipe].hitTime, 0);
+            MusicNote musicNote = _musicSheetManager.GetNearestNote(musicData.Name, naipe, _nearestNotes[naipe].hitTime, 0);
+            
+            _nearestNotes[naipe] = musicNote;
 
             _onDestroyNote?.Invoke(naipe, note);
         }
