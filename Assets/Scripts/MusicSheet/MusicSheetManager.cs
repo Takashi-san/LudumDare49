@@ -56,6 +56,7 @@ public class MusicSheetManager : SingletonMonobehaviour<MusicSheetManager>
             MusicSheet musicSheet = file.GetMusicSheet();
             if (musicSheet != null) {
                 musicSheet.FileName = file.FileName;
+                musicSheet.MusicData = file.MusicData;
                 _musicSheetList.Add(musicSheet);
                 _musicSheetDict.Add(musicSheet.Name, musicSheet);
             }

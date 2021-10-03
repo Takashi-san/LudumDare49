@@ -10,6 +10,7 @@ public class MusicSheet {
     }
     public Dictionary<SuitType, List<MusicNote>> SuitSheets => _suitSheets;
     public string FileName;
+    public AllMusicData.MusicData MusicData;
     string _name;
     Dictionary<SuitType, List<MusicNote>> _suitSheets = new Dictionary<SuitType, List<MusicNote>>();
     
