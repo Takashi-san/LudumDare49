@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class UIGameplayLifebar : MonoBehaviour {
     [SerializeField] Image _image = null;
@@ -9,10 +10,11 @@ public class UIGameplayLifebar : MonoBehaviour {
 
     void Start() {
         // TODO procurar gameplay manager e dar subscribe.
+        // FindObjectOfType<GameplayManager>()?.lifeAction += UpdateLife;
     }
     
     void UpdateLife(int p_life) {
-        if (_sprites.Count != 11) {
+        if (_sprites.Count != 12) {
             Debug.LogWarning("[UIGameplayLifebar] Incorrect amount of sprites!!");
             return;
         }
