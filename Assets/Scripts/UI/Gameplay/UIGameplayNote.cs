@@ -31,7 +31,9 @@ public class UIGameplayNote : MonoBehaviour {
             return;
 
         float musicDiff = _musicNote.hitTime - p_musicProgress;
-        _rectTransform.anchoredPosition = Vector2.right * musicDiff * PIXEL_PER_MILLISECOND;
+        Vector2 position = _rectTransform.anchoredPosition;
+        position.x = musicDiff * PIXEL_PER_MILLISECOND;
+        _rectTransform.anchoredPosition = position;
     }
 
     void SetAnimation() {

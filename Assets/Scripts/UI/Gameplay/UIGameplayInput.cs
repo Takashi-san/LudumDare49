@@ -6,21 +6,21 @@ using UnityEngine.UI;
 public class UIGameplayInput : MonoBehaviour {
     [SerializeField] Image _image = null;
 
-    [Header("A buttom")]
-    [SerializeField] Sprite _spriteA = null;
-    [SerializeField] Sprite _spriteHoldA = null;
+    [Header("Yellow buttom")]
+    [SerializeField] Sprite _spriteYellow = null;
+    [SerializeField] Sprite _spriteHoldYellow = null;
 
-    [Header("D buttom")]
-    [SerializeField] Sprite _spriteD = null;
-    [SerializeField] Sprite _spriteHoldD = null;
+    [Header("Purple buttom")]
+    [SerializeField] Sprite _spritePurple = null;
+    [SerializeField] Sprite _spriteHoldPurple = null;
 
-    [Header("Left buttom")]
-    [SerializeField] Sprite _spriteLeft = null;
-    [SerializeField] Sprite _spriteHoldLeft = null;
+    [Header("Blue buttom")]
+    [SerializeField] Sprite _spriteBlue = null;
+    [SerializeField] Sprite _spriteHoldBlue = null;
 
-    [Header("Right buttom")]
-    [SerializeField] Sprite _spriteRight = null;
-    [SerializeField] Sprite _spriteHoldRight = null;
+    [Header("Green buttom")]
+    [SerializeField] Sprite _spriteGreen = null;
+    [SerializeField] Sprite _spriteHoldGreen = null;
 
     SuitType _suitType;
     bool _isholding = false;
@@ -47,23 +47,23 @@ public class UIGameplayInput : MonoBehaviour {
     void SetSprite() {
         switch (_suitType) {
             case SuitType.Chord:
-                _sprite = _spriteA;
-                _spriteHold = _spriteHoldA;
+                _sprite = _spriteYellow;
+                _spriteHold = _spriteHoldYellow;
                 break;
             
             case SuitType.Metal:
-                _sprite = _spriteD;
-                _spriteHold = _spriteHoldD;
+                _sprite = _spriteBlue;
+                _spriteHold = _spriteHoldBlue;
                 break;
             
             case SuitType.Wood:
-                _sprite = _spriteLeft;
-                _spriteHold = _spriteHoldLeft;
+                _sprite = _spritePurple;
+                _spriteHold = _spriteHoldPurple;
                 break;
             
             case SuitType.Percussion:
-                _sprite = _spriteRight;
-                _spriteHold = _spriteHoldRight;
+                _sprite = _spriteGreen;
+                _spriteHold = _spriteHoldGreen;
                 break;
         }
     }
