@@ -51,7 +51,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f726eaa1895ffd418e937899cfc2aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 3438757988918336211}
+  _image: {fileID: 3438757988918336211}
+  _spriteA: {fileID: -7827565142728089790, guid: 0d2ceda24075b9b4baab34b92779159a,
+    type: 3}
+  _spriteHoldA: {fileID: 6248594308792449819, guid: 0d2ceda24075b9b4baab34b92779159a,
+    type: 3}
+  _spriteD: {fileID: 6130199584133189581, guid: ebad4d0a58e004d40b702d6f7a759b65,
+    type: 3}
+  _spriteHoldD: {fileID: 3846516359523337467, guid: ebad4d0a58e004d40b702d6f7a759b65,
+    type: 3}
+  _spriteLeft: {fileID: 3152798515784471675, guid: 965eee2d310e8f341ac9cbbd23eafef3,
+    type: 3}
+  _spriteHoldLeft: {fileID: 8385294839906658062, guid: 965eee2d310e8f341ac9cbbd23eafef3,
+    type: 3}
+  _spriteRight: {fileID: -7622175472532285958, guid: 724ff2bc6ab52b748a616899b6018d9a,
+    type: 3}
+  _spriteHoldRight: {fileID: -7936503445247803775, guid: 724ff2bc6ab52b748a616899b6018d9a,
+    type: 3}
 --- !u!114 &3438757988918336213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8584906, g: 0.23891956, b: 0.23891956, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
