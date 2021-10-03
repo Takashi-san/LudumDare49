@@ -12,6 +12,7 @@ public class MusicSheetManager : SingletonMonobehaviour<MusicSheetManager>
     
     List<MusicSheet> _musicSheetList = new List<MusicSheet>();
     Dictionary<string, MusicSheet> _musicSheetDict = new Dictionary<string, MusicSheet>();
+    public System.Action MusicSheetsLoaded;
     
     protected override void Awake()
     {
@@ -26,32 +27,18 @@ public class MusicSheetManager : SingletonMonobehaviour<MusicSheetManager>
         if (MusicSheetFileManager.Instance.SheetFileList.Count != 0) {
             LoadMusicSheets();
         }
-        foreach (MusicSheet musicSheet in _musicSheetList)
-        {
-            foreach (KeyValuePair<SuitType, List<MusicNote>> pair in musicSheet.SuitSheets)
-                pair.Value.Sort((a, b) =>
-                {
-                    if (b.hitTime > a.hitTime)
-                        return -1;
-
-                    return 1;
-                });
-            /*
-            foreach (KeyValuePair<SuitType, List<MusicNote>> pair in musicSheet.SuitSheets)
-            {
-                Debug.Log($"Suit: {pair.Key}");
-                foreach (MusicNote note in pair.Value)
-                    Debug.Log($"    note: hitTime{note.hitTime} type: {note.noteType}");
-            }*/
-        }
 
     }
 
     public MusicNote GetNearestNote(string music, SuitType type, int timelinePosition, int tolerance)
     {
+        MusicNote n = default;
+
+        if (!_musicSheetList.Find(s => s.FileName == music).SuitSheets.ContainsKey(type))
+            return n;
+
         List<MusicNote> notes = _musicSheetList.Find(s => s.FileName == music).SuitSheets[type];
 
-        MusicNote n = default;
         foreach (MusicNote note in notes)
         {
             if (note.hitTime > timelinePosition - tolerance)
@@ -73,6 +60,18 @@ public class MusicSheetManager : SingletonMonobehaviour<MusicSheetManager>
                 _musicSheetDict.Add(musicSheet.Name, musicSheet);
             }
         }
+        foreach (MusicSheet musicSheet in _musicSheetList)
+        {
+            foreach (KeyValuePair<SuitType, List<MusicNote>> pair in musicSheet.SuitSheets)
+                pair.Value.Sort((a, b) =>
+                {
+                    if (b.hitTime > a.hitTime)
+                        return -1;
+
+                    return 1;
+                });
+        }
+        MusicSheetsLoaded?.Invoke();
     }
 
 #if DEBUG

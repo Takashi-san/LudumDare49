@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 public class GameplayManager : MonoBehaviour
 #if DEBUG
     , IDebugable
@@ -16,7 +15,7 @@ public class GameplayManager : MonoBehaviour
         PAUSE
     }
 
-    GameState _gameState = GameState.PRE_RUNNING;
+    GameState _gameState;
 
     [SerializeField] UIGameplayBoard _uIGameplayBoard;
     [SerializeField] InputManager _inputManager;
@@ -33,6 +32,10 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] int _missedPoints;
     [SerializeField] int _penaltyPoints;
     [SerializeField] int _maxLife;
+    [SerializeField, FMODUnity.EventRef] string _preRunningSound;
+    [SerializeField, FMODUnity.EventRef] string _goodFeedback;
+    [SerializeField, FMODUnity.EventRef] string _fakeNoteFeedback;
+    [SerializeField, FMODUnity.EventRef] string[] _badFeedback; 
     int _currentLife;
 
     void AddPoints(int points)
@@ -56,23 +59,58 @@ public class GameplayManager : MonoBehaviour
 
     private void OnEnable()
     {
-        _inputManager.AddListener(OnAction);
+        _inputManager.AddGameplayListener(OnAction);
+        _inputManager.AddListener(OnInputEvent);
     }
 
     private void OnDisable()
     {
-        _inputManager.RemoveListener(OnAction);
+        _inputManager.RemoveGameplayListener(OnAction);
+        _inputManager.RemoveListener(OnInputEvent);
+    }
+
+    void OnInputEvent(InputAction.CallbackContext context)
+    {
+        if (context.action.name == "pause" && context.started)
+        {
+            Debug.Log($"context.started: {context.started}");
+            TogglePause();
+        }
+    }
+
+    void TogglePause()
+    {
+        if (_gameState != GameState.RUNNING && _gameState != GameState.PAUSE)
+            return;
+
+        SetState(_gameState != GameState.PAUSE ? GameState.PAUSE : GameState.RUNNING);
     }
 
     void Start()
     {
+        SetState(GameState.PRE_RUNNING);
+        
         AllMusicData.MusicData musicData = _allMusicData.GetMusic(_musicIndex);
         MusicSheet musicSheet = MusicSheetManager.Instance.MusicSheetList.Find(s => s.FileName == musicData.Name);
-        AudioManager.Instance.GetMusicInfo(musicData.MusicRef).getLength(out int length);
-        _uIGameplayBoard.Setup(musicSheet, length, this);
+        
+        if(musicSheet == null)
+            MusicSheetManager.Instance.MusicSheetsLoaded += OnMusicSheetsLoaded;
+        else
+        {
+            OnMusicSheetsLoaded();
+        }
 
         _currentLife = _maxLife;
         OnLifeChange?.Invoke(_currentLife);
+    }
+
+    void OnMusicSheetsLoaded()
+    {
+        AllMusicData.MusicData musicData = _allMusicData.GetMusic(_musicIndex);
+        MusicSheet musicSheet = MusicSheetManager.Instance.MusicSheetList.Find(s => s.FileName == musicData.Name);
+        AudioManager.Instance.GetMusicInfo(musicData.MusicRef).getLength(out int length);
+
+        _uIGameplayBoard.Setup(musicSheet, length, this);
     }
 
     Dictionary<SuitType, MusicNote> _nearestNotes = new Dictionary<SuitType, MusicNote>();
@@ -126,6 +164,7 @@ public class GameplayManager : MonoBehaviour
                 if (toStepNote.noteType != MusicNoteType.Avoid)
                 {
                     Debug.Log($"Missed note {suitType} at {toStepNote.hitTime}, updating to {note.hitTime}");
+                    AudioManager.Instance.PlayOneShotSound(_badFeedback[(int)suitType], transform.position);
                     AddPoints(_missedPoints);
                 }
 
@@ -140,6 +179,7 @@ public class GameplayManager : MonoBehaviour
 
     void SetState(GameState newState)
     {
+        Debug.Log($"State change to {newState}");
         GameState previous = _gameState;
         _gameState = newState;
         OnStateChange(previous, newState);
@@ -149,16 +189,22 @@ public class GameplayManager : MonoBehaviour
         switch (newState)
         {
             case GameState.PRE_RUNNING:
+                AudioManager.Instance.PlayTrack(_preRunningSound, AudioManager.EAudioLayer.MUSIC, FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 break;
             case GameState.RUNNING:
                 if (previous == GameState.PRE_RUNNING)
                 {
                     AudioManager.Instance.PlayTrack(_allMusicData.GetMusic(_musicIndex).MusicRef, AudioManager.EAudioLayer.MUSIC);
                 }
+                else
+                {
+                    AudioManager.Instance.GetTrack(AudioManager.EAudioLayer.MUSIC).EventInstance.setPaused(false);
+                }
                 break;
             case GameState.POS_RUNNING:
                 break;
             case GameState.PAUSE:
+                AudioManager.Instance.GetTrack(AudioManager.EAudioLayer.MUSIC).EventInstance.setPaused(true);
                 break;
         }
     }
@@ -181,6 +227,9 @@ public class GameplayManager : MonoBehaviour
 
     void EvaluatePress(SuitType naipe, int timelinePosition)
     {
+        if (!_nearestNotes.ContainsKey(naipe))
+            return;
+
         MusicNote note = _nearestNotes[naipe];
         string debugString = $" {naipe.ToString()} timeline at {timelinePosition} nearest note {note.noteType.ToString()} at {note.hitTime}";
         if(Mathf.Abs(timelinePosition - note.hitTime) < _missInput)
@@ -191,6 +240,7 @@ public class GameplayManager : MonoBehaviour
                 AddPoints(_penaltyPoints);
                 Debug.Log("deactivate audio");
 
+                AudioManager.Instance.PlayOneShotSound(_fakeNoteFeedback, transform.position);
                 AudioManager.Instance.MuteSuitType(naipe, true);
             }
             else
@@ -216,6 +266,7 @@ public class GameplayManager : MonoBehaviour
 
                 Debug.Log("valid input, reactivate audio");
                 AudioManager.Instance.MuteSuitType(naipe, false);
+                AudioManager.Instance.PlayOneShotSound(_goodFeedback, transform.position);
             }
 
             AllMusicData.MusicData musicData = _allMusicData.GetMusic(_musicIndex);
@@ -258,14 +309,10 @@ public class GameplayManager : MonoBehaviour
             case GameState.POS_RUNNING:
                 if (debugWindow.Button("EndLevel")){ }
                 break;
-            
-            case GameState.PAUSE:
-                SetState(GameState.RUNNING);
-                break;
         }
 
-        if(_gameState == GameState.RUNNING && debugWindow.Button("Pause"))
-            _gameState = GameState.PAUSE;
+        if (_gameState == GameState.RUNNING && debugWindow.Button("Pause"))
+            TogglePause();
     }
 
     void DebugNearests(System.Func<bool, int> nextLine)
