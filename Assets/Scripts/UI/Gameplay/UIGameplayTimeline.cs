@@ -1,9 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIGameplayTimeline : MonoBehaviour {
+    [SerializeField] Image _image = null;
     [SerializeField] GameObject _notePrefab = null;
+
+    [SerializeField] Sprite _yellowLine = null;
+    [SerializeField] Sprite _purpleLine = null;
+    [SerializeField] Sprite _blueLine = null;
+    [SerializeField] Sprite _greenLine = null;
     
     SuitType _suitType;
     int _musicLength;
@@ -15,6 +22,7 @@ public class UIGameplayTimeline : MonoBehaviour {
         _suitSheet = p_suitSheet;
         _musicLength = p_musicLength;
 
+        SetupLine();
         SetupNotes();
     }
 
@@ -26,6 +34,26 @@ public class UIGameplayTimeline : MonoBehaviour {
 
     public void MusicProgressUpdate(int p_musicProgress) {
         SetNotesPosition(p_musicProgress);
+    }
+
+    void SetupLine() {
+        switch (_suitType) {
+            case SuitType.Chord:
+                _image.sprite = _yellowLine;
+                break;
+            
+            case SuitType.Metal:
+                _image.sprite = _blueLine;
+                break;
+            
+            case SuitType.Wood:
+                _image.sprite = _purpleLine;
+                break;
+            
+            case SuitType.Percussion:
+                _image.sprite = _greenLine;
+                break;
+        }
     }
 
     void SetupNotes() {

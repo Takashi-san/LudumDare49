@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 20, y: 20}
+  m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3438757988918336212
 MonoBehaviour:
@@ -52,21 +52,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _image: {fileID: 3438757988918336211}
-  _spriteA: {fileID: -7827565142728089790, guid: 0d2ceda24075b9b4baab34b92779159a,
+  _spriteYellow: {fileID: 3102733778717590575, guid: 580c154b971971f48adf3139c339de9d,
     type: 3}
-  _spriteHoldA: {fileID: 6248594308792449819, guid: 0d2ceda24075b9b4baab34b92779159a,
+  _spriteHoldYellow: {fileID: 8177104477437767241, guid: 580c154b971971f48adf3139c339de9d,
     type: 3}
-  _spriteD: {fileID: 6130199584133189581, guid: ebad4d0a58e004d40b702d6f7a759b65,
+  _spritePurple: {fileID: -3017647063006135674, guid: 7ca854e4a7482c54aaf99da1c8672127,
     type: 3}
-  _spriteHoldD: {fileID: 3846516359523337467, guid: ebad4d0a58e004d40b702d6f7a759b65,
+  _spriteHoldPurple: {fileID: 8136513675884709343, guid: 7ca854e4a7482c54aaf99da1c8672127,
     type: 3}
-  _spriteLeft: {fileID: 3152798515784471675, guid: 965eee2d310e8f341ac9cbbd23eafef3,
+  _spriteBlue: {fileID: -6314218188476250552, guid: 60db254fc16fb1f469c0916a785b1364,
     type: 3}
-  _spriteHoldLeft: {fileID: 8385294839906658062, guid: 965eee2d310e8f341ac9cbbd23eafef3,
+  _spriteHoldBlue: {fileID: 6090123975918777446, guid: 60db254fc16fb1f469c0916a785b1364,
     type: 3}
-  _spriteRight: {fileID: -7622175472532285958, guid: 724ff2bc6ab52b748a616899b6018d9a,
+  _spriteGreen: {fileID: 7438647752836318670, guid: 8a9d0e54fe4e4e947828d4dbcabd1a9f,
     type: 3}
-  _spriteHoldRight: {fileID: -7936503445247803775, guid: 724ff2bc6ab52b748a616899b6018d9a,
+  _spriteHoldGreen: {fileID: -1749813330825002865, guid: 8a9d0e54fe4e4e947828d4dbcabd1a9f,
     type: 3}
 --- !u!114 &3438757988918336213
 MonoBehaviour:
@@ -107,7 +107,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 3102733778717590575, guid: 580c154b971971f48adf3139c339de9d,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
