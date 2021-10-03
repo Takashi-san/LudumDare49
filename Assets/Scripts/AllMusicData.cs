@@ -8,13 +8,13 @@ public class AllMusicData : ScriptableObject
     [System.Serializable]
     public class MusicData
     {
-        [SerializeField] TextAsset _textAsset;
-        [SerializeField, FMODUnity.EventRef] string _music;
+        [SerializeField] public TextAsset _textAsset;
+        [SerializeField, FMODUnity.EventRef] public string _music;
         public string Name => _textAsset.name;
         public string MusicRef => _music;
     }
 
-    [SerializeField] List<MusicData> _musics = new List<MusicData>();
+    [SerializeField] public List<MusicData> _musics = new List<MusicData>();
 
     public MusicData GetMusic(int index) => _musics[index];
 }
