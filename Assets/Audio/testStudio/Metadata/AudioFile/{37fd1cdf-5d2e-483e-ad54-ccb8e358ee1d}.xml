@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{37fd1cdf-5d2e-483e-ad54-ccb8e358ee1d}">
+		<property name="assetPath">
+			<value>Cordas_Erro_3.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.0454648526077097</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{d83697f1-54a9-4752-b571-03ef264cbac0}</destination>
+		</relationship>
+	</object>
+</objects>
