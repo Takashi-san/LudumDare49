@@ -66,5 +66,6 @@ public class UIGameplayInput : MonoBehaviour {
                 _spriteHold = _spriteHoldGreen;
                 break;
         }
+        _image.sprite = _sprite;
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UIGameplayNote : MonoBehaviour {
-    const float PIXEL_PER_MILLISECOND = 0.2f;
+    const float PIXEL_PER_MILLISECOND = 0.075f;
 
     [SerializeField] RectTransform _rectTransform = null;
     [SerializeField] Animator _animator = null;

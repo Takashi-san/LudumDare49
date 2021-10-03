@@ -18,7 +18,6 @@ public class GameplayManager : MonoBehaviour
 
     GameState _gameState = GameState.PRE_RUNNING;
 
-    [SerializeField] BoardManager _boardManager;
     [SerializeField] UIGameplayBoard _uIGameplayBoard;
     [SerializeField] InputManager _inputManager;
     [SerializeField] MusicSheetManager _musicSheetManager;
@@ -172,15 +171,11 @@ public class GameplayManager : MonoBehaviour
         {
             if (_gameState == GameState.RUNNING)
                 EvaluatePress(naipe, timelinePosition);
-
-            _boardManager.PressNaipe(naipe, true);
         }
         else if (context.canceled)
         {
             if (_gameState == GameState.RUNNING)
                 EvaluateRelease(naipe, timelinePosition);
-
-            _boardManager.PressNaipe(naipe, false);
         }
     }
 
