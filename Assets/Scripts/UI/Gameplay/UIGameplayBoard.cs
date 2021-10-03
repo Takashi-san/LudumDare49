@@ -51,7 +51,6 @@ public class UIGameplayBoard : MonoBehaviour {
     }
 
     void MusicProgressUpdate(int p_musicProgress) {
-        Debug.Log("Called");
         foreach (var timeline in _timelineDict) {
             timeline.Value.MusicProgressUpdate(p_musicProgress);
         }

@@ -17,13 +17,17 @@ public class UIGameplayNote : MonoBehaviour {
         _musicLength = p_musicLength;
     }
 
+    bool destroyed = false;
     public void DestroyNote() {
         Destroy(gameObject);
+        destroyed = true;
     }
 
     public void MusicProgressUpdate(int p_musicProgress) {
+        if (destroyed)
+            return;
+
         float musicDiff = _musicNote.hitTime - p_musicProgress;
-        Debug.Log($"musicDiff {musicDiff} p_musicProgress {p_musicProgress}");
         _rectTransform.anchoredPosition = Vector2.right * musicDiff * PIXEL_PER_MILLISECOND;
     }
 }

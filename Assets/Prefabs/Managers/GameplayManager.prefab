@@ -152,9 +152,15 @@ MonoBehaviour:
   _musicSheetManager: {fileID: 8908665173815357439}
   _allMusicData: {fileID: 11400000, guid: cd55de9d4a53006418d4c552b2d96793, type: 2}
   _musicIndex: 0
-  _badInputDistance: 100
-  _goodInputDistance: 50
-  _perfectInputDistance: 20
+  _missInput: 250
+  _goodInputDistance: 200
+  _perfectInputDistance: 80
+  _perfectPoints: 2
+  _goodPoints: 1
+  _simpleHitPoints: 0
+  _missedPoints: -1
+  _penaltyPoints: -3
+  _maxLife: 11
   _debug: 0
 --- !u!1001 &1990217300063246588
 PrefabInstance:

@@ -35,7 +35,6 @@ public class InputManager : MonoBehaviour
 
     void OnActionTriggered(InputAction.CallbackContext context)
     {
-        Debug.Log($"Action triggered {context.action.name}");
         switch (context.action.name)
         {
             case "corda":

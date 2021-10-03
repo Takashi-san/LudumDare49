@@ -14,6 +14,8 @@ public class Cheats : MonoBehaviour
 
     //Input
     void OnCHEATS() => _debug = !_debug;
+    void OnTimescaleUp() => Time.timeScale = Mathf.Clamp(Time.timeScale + .2f, 0, 1);
+    void OnTimescaleDown() => Time.timeScale = Mathf.Clamp(Time.timeScale - .2f, 0, 1);
 
     bool _debug = false;
     private void OnGUI()
@@ -25,6 +27,8 @@ public class Cheats : MonoBehaviour
 
     void DebugContents(System.Func<bool, int> nextLine)
     {
+        debugWindow.Label($"Timescale: {Time.timeScale}");
+
         if(debugWindow.Button("Play test sound"))
             AudioManager.Instance.PlayTrack(_audioTest, AudioManager.EAudioLayer.MUSIC);
 

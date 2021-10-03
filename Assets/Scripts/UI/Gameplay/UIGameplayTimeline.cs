@@ -25,7 +25,6 @@ public class UIGameplayTimeline : MonoBehaviour {
     }
 
     public void MusicProgressUpdate(int p_musicProgress) {
-        Debug.Log("MusicProgressUpdate");
         SetNotesPosition(p_musicProgress);
     }
 
@@ -43,7 +42,6 @@ public class UIGameplayTimeline : MonoBehaviour {
     }
 
     void SetNotesPosition(int p_musicProgress) {
-        Debug.Log("SetNotes position");
         foreach (var note in _noteDict) {
             note.Value?.MusicProgressUpdate(p_musicProgress);
         }

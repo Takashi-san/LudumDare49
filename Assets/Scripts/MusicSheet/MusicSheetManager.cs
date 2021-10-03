@@ -26,26 +26,40 @@ public class MusicSheetManager : SingletonMonobehaviour<MusicSheetManager>
         if (MusicSheetFileManager.Instance.SheetFileList.Count != 0) {
             LoadMusicSheets();
         }
+        foreach (MusicSheet musicSheet in _musicSheetList)
+        {
+            foreach (KeyValuePair<SuitType, List<MusicNote>> pair in musicSheet.SuitSheets)
+                pair.Value.Sort((a, b) =>
+                {
+                    if (b.hitTime > a.hitTime)
+                        return -1;
+
+                    return 1;
+                });
+            /*
+            foreach (KeyValuePair<SuitType, List<MusicNote>> pair in musicSheet.SuitSheets)
+            {
+                Debug.Log($"Suit: {pair.Key}");
+                foreach (MusicNote note in pair.Value)
+                    Debug.Log($"    note: hitTime{note.hitTime} type: {note.noteType}");
+            }*/
+        }
+
     }
 
-    public MusicNote GetNearestNote(string music, SuitType type, int timelinePosition)
+    public MusicNote GetNearestNote(string music, SuitType type, int timelinePosition, int tolerance)
     {
-        Debug.Log("GetNearest");
-        List<MusicNote> notes = _musicSheetList.Find(s => s.FileName == music).SuitSheets[SuitType.Chord];
-        
-        notes.Sort((a, b) =>
-        {
-            if (b.hitTime > a.hitTime)
-                return -1;
-            
-            return 1;
-        });
-        Debug.Log("notes sorted");
+        List<MusicNote> notes = _musicSheetList.Find(s => s.FileName == music).SuitSheets[type];
 
-        MusicNote n = notes[0];
+        MusicNote n = default;
         foreach (MusicNote note in notes)
-            if (note.hitTime >= timelinePosition)
+        {
+            if (note.hitTime > timelinePosition - tolerance)
+            {
                 n = note;
+                break;
+            }
+        }
 
         return n;
     }

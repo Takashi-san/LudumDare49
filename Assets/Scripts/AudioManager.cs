@@ -33,6 +33,19 @@ public class AudioManager
         }
     }
 
+    public int GetMusicTimelinePosition()
+    {
+        int timelinePosition = 0;
+        if(_tracks[(int)EAudioLayer.MUSIC] != null)
+            _tracks[(int)EAudioLayer.MUSIC].EventInstance.getTimelinePosition(out timelinePosition);
+        return timelinePosition;
+    }
+
+    public void MuteSuitType(SuitType suitType, bool mute)
+    {
+        _tracks[(int)EAudioLayer.MUSIC].SetParameter(_parameters[(int)suitType], !mute);
+    }
+
     public enum EAudioLayer { MUSIC, AMBIENCE }
 
     List<AudioPack> _tracks;
@@ -45,8 +58,8 @@ public class AudioManager
     string[] _parameters = new string[]
     {
         "Hit Corda",
-        "Hit Madeira",
         "Hit Metais",
+        "Hit Madeira",
         "Hit Percussao"
     };
 

@@ -96,6 +96,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "TimescaleUp",
+                    "type": "Button",
+                    "id": "c8199f4c-3bb6-44c3-83e2-9b07d482ed1e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TimescaleDown",
+                    "type": "Button",
+                    "id": "b7e37082-5ae6-4343-87b9-24421ba85709",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -107,6 +123,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "CHEATS",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2873f15d-5386-4ada-ade5-3c4e0261afcf",
+                    "path": "<Keyboard>/pageUp",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TimescaleUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a332a4a8-4bf5-4b3c-81a9-dd17a3fb9b3e",
+                    "path": "<Keyboard>/pageDown",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TimescaleDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
