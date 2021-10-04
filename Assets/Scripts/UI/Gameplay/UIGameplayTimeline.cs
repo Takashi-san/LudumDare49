@@ -63,12 +63,15 @@ public class UIGameplayTimeline : MonoBehaviour {
 
     void CreateNotes() {
         foreach (var musicNote in _suitSheet) {
-        //foreach(SuitType suit in System.Enum.GetValues(typeof(SuitType))){
             UIGameplayNote uiNote = Instantiate(_notePrefab, Vector3.zero, Quaternion.identity, transform).GetComponent<UIGameplayNote>();
             uiNote.Setup(_suitType, musicNote, _musicLength);
 
-            if(! _noteDict.ContainsKey(musicNote.hitTime))
+            if(! _noteDict.ContainsKey(musicNote.hitTime)) {
                 _noteDict.Add(musicNote.hitTime, uiNote);
+            }
+            else {
+                Destroy(uiNote.gameObject);
+            }
         }
     }
 

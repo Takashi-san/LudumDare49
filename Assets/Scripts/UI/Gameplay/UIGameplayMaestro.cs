@@ -65,19 +65,19 @@ public class UIGameplayMaestro : MonoBehaviour {
 
         switch (p_suitType) {
             case SuitType.Chord:
-                _selectedPattern = _currentState != state.bad ? _patternLeftSoft : _patternLeftHard;
+                _selectedPattern = _currentState == state.good ? _patternRightSoft : _patternRightHard;
                 break;
             
             case SuitType.Metal:
-                _selectedPattern = _currentState != state.bad ? _patternWaveSoft : _patternWaveHard;
+                _selectedPattern = _currentState == state.good ? _patternWaveSoft : _patternWaveHard;
                 break;
             
             case SuitType.Wood:
-                _selectedPattern = _currentState != state.bad ? _patternWaveSoft : _patternWaveHard;
+                _selectedPattern = _currentState == state.good ? _patternLeftSoft : _patternLeftHard;
                 break;
             
             case SuitType.Percussion:
-                _selectedPattern = _currentState != state.bad ? _patternRightSoft : _patternRightHard;
+                _selectedPattern = _currentState == state.good ? _patternWaveSoft : _patternWaveHard;
                 break;
         }
 
