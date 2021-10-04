@@ -14,17 +14,17 @@
                     "interactions": ""
                 },
                 {
-                    "name": "madeira",
+                    "name": "metais",
                     "type": "Button",
-                    "id": "9fda5fa0-ed25-4998-b88f-15d071497812",
+                    "id": "c638e826-1e28-47a6-b1f4-e44b5aaeeaa1",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
                 {
-                    "name": "metais",
+                    "name": "madeira",
                     "type": "Button",
-                    "id": "c638e826-1e28-47a6-b1f4-e44b5aaeeaa1",
+                    "id": "9fda5fa0-ed25-4998-b88f-15d071497812",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -50,7 +50,7 @@
                 {
                     "name": "",
                     "id": "1d4aca33-55b9-49f0-b7f3-4c5ce83b3c44",
-                    "path": "<Keyboard>/d",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -60,19 +60,8 @@
                 },
                 {
                     "name": "",
-                    "id": "76878791-1755-46b0-9c77-6be0a4db5907",
-                    "path": "<Keyboard>/c",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "madeira",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "51bc165a-98dc-4614-97f8-25afe1e4407a",
-                    "path": "<Keyboard>/k",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -83,7 +72,7 @@
                 {
                     "name": "",
                     "id": "1a89dede-9e81-40de-a018-538a0a488320",
-                    "path": "<Keyboard>/m",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -110,6 +99,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "76878791-1755-46b0-9c77-6be0a4db5907",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "madeira",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
