@@ -11,7 +11,7 @@ public class UIGameplayBoard : MonoBehaviour {
     [Header("Input")]
     [SerializeField] GameObject _inputPrefab = null;
     [SerializeField] RectTransform _inputParent = null;
-    
+
     MusicSheet _musicSheet;
     int _musicLength;
     Dictionary<SuitType, UIGameplayTimeline> _timelineDict = new Dictionary<SuitType, UIGameplayTimeline>();
