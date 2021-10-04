@@ -23,7 +23,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] PauseMenuController _pauseMenu;
 
     [SerializeField] AllMusicData _allMusicData;
-    [SerializeField] int _musicIndex;
+    [SerializeField] public int _musicIndex;
     [SerializeField] int _missInput;
     [SerializeField] int _goodInputDistance;
     [SerializeField] int _perfectInputDistance;
@@ -63,6 +63,12 @@ public class GameplayManager : MonoBehaviour
         debugWindow = new DebugWindow(this.ToString(), DebugContents);
         debugWindow.AddSession("Nearests:", DebugNearests);
 #endif
+        if (GameManager.Instance != null)
+        {
+            Debug.Log("Taken from GameManager");
+            _musicIndex = GameManager.Instance.musicIndex;
+        }
+        
         _pauseMenu.gameObject.SetActive(false);
     }
 
@@ -87,7 +93,7 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
-    void TogglePause()
+    public void TogglePause()
     {
         if (_gameState != GameState.RUNNING && _gameState != GameState.PAUSE)
             return;
@@ -124,12 +130,16 @@ public class GameplayManager : MonoBehaviour
 
     Dictionary<SuitType, MusicNote> _nearestNotes = new Dictionary<SuitType, MusicNote>();
 
+    float _timer = 3;
     private void Update()
     {
         
         switch (_gameState)
         {
             case GameState.PRE_RUNNING:
+                _timer -= Time.deltaTime;
+                if (_timer < 0)
+                    SetState(GameState.RUNNING);
                 break;
             case GameState.RUNNING:
                 AudioManager.Instance.GetTrack(AudioManager.EAudioLayer.MUSIC).EventInstance.getTimelinePosition(out int timelinePosition);
@@ -192,11 +202,6 @@ public class GameplayManager : MonoBehaviour
         {
             _nearestNotes.Add(suitType, note);
         }
-    }
-
-    void OnClickContinue()
-    {
-        TogglePause();
     }
 
     void SetState(GameState newState)

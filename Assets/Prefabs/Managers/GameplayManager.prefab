@@ -58,7 +58,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &3515383422428787569
 MonoBehaviour:
@@ -154,8 +154,8 @@ MonoBehaviour:
   _missInput: 250
   _goodInputDistance: 200
   _perfectInputDistance: 80
-  _perfectPoints: 2
-  _goodPoints: 1
+  _perfectPoints: 1
+  _goodPoints: 0
   _simpleHitPoints: 0
   _missedPoints: -1
   _penaltyPoints: -3
@@ -181,6 +181,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RestartLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 367400429750024527, guid: 8df2bf99ffd12ce409de3db7b8d0bcd2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 367400429750024527, guid: 8df2bf99ffd12ce409de3db7b8d0bcd2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 367400429750024527, guid: 8df2bf99ffd12ce409de3db7b8d0bcd2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1609798464298407651}
+    - target: {fileID: 367400429750024527, guid: 8df2bf99ffd12ce409de3db7b8d0bcd2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 367400429750024527, guid: 8df2bf99ffd12ce409de3db7b8d0bcd2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TogglePause
+      objectReference: {fileID: 0}
+    - target: {fileID: 367400429750024527, guid: 8df2bf99ffd12ce409de3db7b8d0bcd2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 418505310931576710, guid: 8df2bf99ffd12ce409de3db7b8d0bcd2,
         type: 3}

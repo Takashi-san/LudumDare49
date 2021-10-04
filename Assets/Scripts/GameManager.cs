@@ -7,6 +7,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     [SerializeField] string _gameplayScene;
     [SerializeField] string _mainmenuScene;
     [SerializeField] string _creditsScene;
+    public int musicIndex;
 
     protected override void Awake()
     {
