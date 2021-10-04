@@ -4812,7 +4812,7 @@ MonoBehaviour:
   _creditScreen: {fileID: 8943686611157794943}
   _controlScreen: {fileID: 8943686611058451220}
   _musicSelectScreen: {fileID: 8943686611881356164}
-  _logo: {fileID: 0}
+  _logo: {fileID: 974055878155037342}
 --- !u!1 &8943686611881356164
 GameObject:
   m_ObjectHideFlags: 0

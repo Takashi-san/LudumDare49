@@ -5536,7 +5536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e239ce7aa234f4045bffa4eb75bbcbfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameplayScene: mashiroTests
+  _gameplayScene: Gameplay
   _mainmenuScene: MainMenu
   _creditsScene: 
   musicIndex: 0

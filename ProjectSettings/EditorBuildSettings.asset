@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/mashiroTests.unity
+    path: Assets/Scenes/Gameplay.unity
     guid: c432430136a694048bfc371a35e9f9d8
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 8adc9782d0df89a4f8f94bd2241c951b,
