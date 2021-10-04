@@ -93,10 +93,10 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: -1
+    m_Top: 0
     m_Bottom: 3
   m_ChildAlignment: 4
-  m_Spacing: 2
+  m_Spacing: 5
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -381,7 +381,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 0}
+  m_SizeDelta: {x: 250, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &574594384724761690
 CanvasRenderer:
@@ -411,8 +411,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f42f6de953f1b5e498988c3a0a1cdbc7, type: 3}
-    m_FontSize: 18
+    m_Font: {fileID: 12800000, guid: 2dc002a28feda664daa681c89fc51875, type: 3}
+    m_FontSize: 11
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -423,7 +423,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Magnificent!
+  m_Text: Thanks to your lack of musical sensitivity, the world will be destroyed
 --- !u!1 &574594384963618805
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,6 +475,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _box: {fileID: 574594383374242483}
   _text: {fileID: 574594384724761689}
+  _good: {r: 1, g: 0.8260523, b: 0.18396229, a: 1}
+  _bad: {r: 0.8490566, g: 0.10012458, b: 0.12944867, a: 1}
 --- !u!1 &5476586648219575493
 GameObject:
   m_ObjectHideFlags: 0
