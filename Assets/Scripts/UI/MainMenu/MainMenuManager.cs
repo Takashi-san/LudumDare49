@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class MainMenuManager : MonoBehaviour {
     [SerializeField] GameObject _mainScreen = null;
@@ -9,6 +10,17 @@ public class MainMenuManager : MonoBehaviour {
     [SerializeField] GameObject _controlScreen = null;
     [SerializeField] GameObject _musicSelectScreen = null;
     [SerializeField] GameObject _logo = null;
+
+    [Header("Timeline")]
+    [SerializeField] GameObject _timelinePrefab = null;
+    [SerializeField] RectTransform _timelineParent = null;
+
+    [Header("Input")]
+    [SerializeField] GameObject _inputPrefab = null;
+    [SerializeField] RectTransform _inputParent = null;
+
+    Dictionary<SuitType, UIGameplayTimeline> _timelineDict = new Dictionary<SuitType, UIGameplayTimeline>();
+    Dictionary<SuitType, UIGameplayInput> _inputDict = new Dictionary<SuitType, UIGameplayInput>();
 
     enum screen {
         main,
@@ -19,6 +31,42 @@ public class MainMenuManager : MonoBehaviour {
 
     void Start() {
         SetScreen(screen.main);
+        InputManager input = FindObjectOfType<InputManager>();
+        if (input != null) {
+            input.AddGameplayListener(OnInput);
+        }
+
+        SetupTimelines();
+        SetupInputs();
+    }
+
+    void OnInput(SuitType naipe, InputAction.CallbackContext context)
+    {
+        NewInput(naipe, context.started || context.performed);
+    }
+
+    void NewInput(SuitType p_suitType, bool p_isholding) {
+        if (_inputDict.ContainsKey(p_suitType)) {
+            _inputDict[p_suitType].DoInput(p_isholding);
+        }
+    }
+
+    void SetupTimelines() {
+        foreach (SuitType suit in System.Enum.GetValues(typeof(SuitType)))
+        {
+            UIGameplayTimeline timeline = Instantiate(_timelinePrefab, Vector3.zero, Quaternion.identity, _timelineParent).GetComponent<UIGameplayTimeline>();
+            _timelineDict.Add(suit, timeline);
+        }
+    }
+
+    void SetupInputs() {
+        foreach (SuitType suit in System.Enum.GetValues(typeof(SuitType)))
+        {
+            GameObject inputPrefab = Instantiate(_inputPrefab, Vector3.zero, Quaternion.identity, _inputParent);
+            UIGameplayInput input = inputPrefab.GetComponent<UIGameplayInput>();
+            input.Setup(suit);
+            _inputDict.Add(suit, input);
+        }
     }
     
     void SetScreen(screen p_screen) {
