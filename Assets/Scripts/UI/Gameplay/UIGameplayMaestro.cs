@@ -46,8 +46,8 @@ public class UIGameplayMaestro : MonoBehaviour {
         GameplayManager gameplayManager = FindObjectOfType<GameplayManager>();
         if (gameplayManager != null) {
             gameplayManager.OnLifeChange += UpdateLife;
-            gameplayManager._onInputChange += NewInput;
-            // subscribe to win/loss -> GameFinished
+            gameplayManager.OnInputReceived += NewInput;
+            gameplayManager.OnStageComplete += GameFinished;
         }
         _animation = StartCoroutine(DoAnimation());
     }

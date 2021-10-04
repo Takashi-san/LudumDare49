@@ -20,6 +20,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] UIGameplayBoard _uIGameplayBoard;
     [SerializeField] InputManager _inputManager;
     [SerializeField] MusicSheetManager _musicSheetManager;
+    [SerializeField] PauseMenuController _pauseMenu;
 
     [SerializeField] AllMusicData _allMusicData;
     [SerializeField] int _musicIndex;
@@ -43,12 +44,18 @@ public class GameplayManager : MonoBehaviour
     {
         _currentLife = Mathf.Clamp(_currentLife + points, -1, _maxLife);
         OnLifeChange?.Invoke(_currentLife);
+        if (_currentLife < 0)
+        {
+            OnStageComplete?.Invoke(false);
+            SetState(GameState.POS_RUNNING);
+        }
     }
 
     public System.Action<int> OnLifeChange;
     public System.Action<int> _onTimelineChange;
-    public System.Action<SuitType, bool> _onInputChange;
+    public System.Action<SuitType, bool> OnInputReceived;
     public System.Action<SuitType, MusicNote> _onDestroyNote;
+    public System.Action<bool> OnStageComplete;
 
     void Awake()
     {
@@ -56,6 +63,7 @@ public class GameplayManager : MonoBehaviour
         debugWindow = new DebugWindow(this.ToString(), DebugContents);
         debugWindow.AddSession("Nearests:", DebugNearests);
 #endif
+        _pauseMenu.gameObject.SetActive(false);
     }
 
     private void OnEnable()
@@ -138,6 +146,13 @@ public class GameplayManager : MonoBehaviour
 
 
                 _onTimelineChange?.Invoke(timelinePosition);
+
+                AudioManager.Instance.GetTrack(AudioManager.EAudioLayer.MUSIC).EventInstance.getPlaybackState(out FMOD.Studio.PLAYBACK_STATE state);
+                if (state == FMOD.Studio.PLAYBACK_STATE.STOPPED)
+                {
+                    OnStageComplete?.Invoke(true);
+                    SetState(GameState.POS_RUNNING);
+                }
                 break;
             case GameState.POS_RUNNING:
                 break;
@@ -179,6 +194,11 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
+    void OnClickContinue()
+    {
+        TogglePause();
+    }
+
     void SetState(GameState newState)
     {
         Debug.Log($"State change to {newState}");
@@ -201,11 +221,13 @@ public class GameplayManager : MonoBehaviour
                 else
                 {
                     AudioManager.Instance.GetTrack(AudioManager.EAudioLayer.MUSIC).EventInstance.setPaused(false);
+                    _pauseMenu.gameObject.SetActive(false);
                 }
                 break;
             case GameState.POS_RUNNING:
                 break;
             case GameState.PAUSE:
+                _pauseMenu.gameObject.SetActive(true);
                 AudioManager.Instance.GetTrack(AudioManager.EAudioLayer.MUSIC).EventInstance.setPaused(true);
                 break;
         }
@@ -213,7 +235,7 @@ public class GameplayManager : MonoBehaviour
 
     void OnAction(SuitType naipe, InputAction.CallbackContext context)
     {
-        _onInputChange?.Invoke(naipe, context.started || context.performed);
+        OnInputReceived?.Invoke(naipe, context.started || context.performed);
         int timelinePosition = AudioManager.Instance.GetMusicTimelinePosition();
         if (context.started)
         {

@@ -14,8 +14,13 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         DontDestroyOnLoad(gameObject);
     }
 
-    void LoadScene(string scene)
+    public void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene, LoadSceneMode.Single);
+    }
+
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
     }
 }

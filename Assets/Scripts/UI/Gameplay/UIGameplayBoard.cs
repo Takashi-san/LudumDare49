@@ -22,7 +22,7 @@ public class UIGameplayBoard : MonoBehaviour {
     public void Setup(MusicSheet p_musicSheet, int p_musicLength, GameplayManager gameplayManager) {
         _musicSheet = p_musicSheet;
         _musicLength = p_musicLength;
-        gameplayManager._onInputChange += NewInput;
+        gameplayManager.OnInputReceived += NewInput;
         gameplayManager._onDestroyNote += DestroyNote;
         gameplayManager._onTimelineChange += MusicProgressUpdate;
 
