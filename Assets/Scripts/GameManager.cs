@@ -11,6 +11,9 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     protected override void Awake()
     {
         base.Awake();
+        if (!IsSingletonInstance()) {
+            return;
+        }
         DontDestroyOnLoad(gameObject);
     }
 
