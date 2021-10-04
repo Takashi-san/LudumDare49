@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour {
     [SerializeField] GameObject _mainScreen = null;
     [SerializeField] GameObject _creditScreen = null;
     [SerializeField] GameObject _controlScreen = null;
     [SerializeField] GameObject _musicSelectScreen = null;
-    
+    [SerializeField] GameObject _logo = null;
+
     enum screen {
         main,
         credit,
@@ -24,10 +26,12 @@ public class MainMenuManager : MonoBehaviour {
         _creditScreen.SetActive(false);
         _controlScreen.SetActive(false);
         _musicSelectScreen.SetActive(false);
+        _logo.SetActive(false);
 
         switch(p_screen) {
             case screen.main:
                 _mainScreen.SetActive(true);
+                _logo.SetActive(true);
                 break;
             
             case screen.credit:
@@ -43,10 +47,15 @@ public class MainMenuManager : MonoBehaviour {
                 break;
         }
     }
+
+    void SetupMusicSelect() {
+        // wip
+    }
     
     #region Buttom
     public void GoStartGame() {
         // go to storytelling
+        GameManager.Instance.LoadScene("Gameplay");
     }
 
     public void GoMusicSelect() {
