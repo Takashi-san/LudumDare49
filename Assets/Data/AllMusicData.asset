@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: AllMusicData
   m_EditorClassIdentifier: 
   _musics:
+  - _textAsset: {fileID: 4900000, guid: 19c014acbd538f84f8a46c8ad3f1f58c, type: 3}
+    _music: event:/Musica/Musica 1
   - _textAsset: {fileID: 4900000, guid: 7c0b08260d402504ab8038b20755065c, type: 3}
     _music: event:/Musica/Musica 1

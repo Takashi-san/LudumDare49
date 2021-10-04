@@ -112,8 +112,10 @@ public class GameplayManager : MonoBehaviour
         AllMusicData.MusicData musicData = _allMusicData.GetMusic(_musicIndex);
         MusicSheet musicSheet = MusicSheetManager.Instance.MusicSheetList.Find(s => s.FileName == musicData.Name);
         
-        if(musicSheet == null)
-            MusicSheetManager.Instance.MusicSheetsLoaded += OnMusicSheetsLoaded;
+        MusicSheetManager.Instance.MusicSheetsLoaded += OnMusicSheetsLoaded;
+        if(musicSheet == null) {
+            
+        }
         else
         {
             OnMusicSheetsLoaded();
