@@ -32,20 +32,28 @@ public class UIGameplayBoard : MonoBehaviour {
     }
 
     void SetupTimelines() {
-        foreach (var suit in _musicSheet.SuitSheets) {
+        //foreach (var suit in _musicSheet.SuitSheets) {
+        foreach (SuitType suit in System.Enum.GetValues(typeof(SuitType)))
+        {
+            if (!_musicSheet.SuitSheets.ContainsKey(suit))
+                continue;
+
             UIGameplayTimeline timeline = Instantiate(_timelinePrefab, Vector3.zero, Quaternion.identity, _timelineParent).GetComponent<UIGameplayTimeline>();
-            timeline.Setup(suit.Key, suit.Value, _musicLength);
-            _timelineDict.Add(suit.Key, timeline);
+            timeline.Setup(suit, _musicSheet.SuitSheets[suit], _musicLength);
+            _timelineDict.Add(suit, timeline);
         }
     }
 
     void SetupInputs() {
-        foreach (var suit in _musicSheet.SuitSheets) {
+        foreach (SuitType suit in System.Enum.GetValues(typeof(SuitType)))
+        {
+            if (!_musicSheet.SuitSheets.ContainsKey(suit))
+                continue;
+
             GameObject inputPrefab = Instantiate(_inputPrefab, Vector3.zero, Quaternion.identity, _inputParent);
-            
             UIGameplayInput input = inputPrefab.GetComponent<UIGameplayInput>();
-            input.Setup(suit.Key);
-            _inputDict.Add(suit.Key, input);
+            input.Setup(suit);
+            _inputDict.Add(suit, input);
 
             // add feedback
         }

@@ -6,9 +6,9 @@
             "id": "426bba46-5ea5-4a86-9e79-2d523b8d4636",
             "actions": [
                 {
-                    "name": "corda",
+                    "name": "madeira",
                     "type": "Button",
-                    "id": "a69ae661-08b1-44bd-af60-be89f4fee687",
+                    "id": "9fda5fa0-ed25-4998-b88f-15d071497812",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -22,17 +22,17 @@
                     "interactions": ""
                 },
                 {
-                    "name": "madeira",
+                    "name": "percussao",
                     "type": "Button",
-                    "id": "9fda5fa0-ed25-4998-b88f-15d071497812",
+                    "id": "d787fcef-c4d5-44be-93e7-345c892cc653",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
                 {
-                    "name": "percussao",
+                    "name": "corda",
                     "type": "Button",
-                    "id": "d787fcef-c4d5-44be-93e7-345c892cc653",
+                    "id": "a69ae661-08b1-44bd-af60-be89f4fee687",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -49,17 +49,6 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "1d4aca33-55b9-49f0-b7f3-4c5ce83b3c44",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "corda",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "51bc165a-98dc-4614-97f8-25afe1e4407a",
                     "path": "<Keyboard>/d",
                     "interactions": "",
@@ -72,7 +61,7 @@
                 {
                     "name": "",
                     "id": "1a89dede-9e81-40de-a018-538a0a488320",
-                    "path": "<Keyboard>/rightArrow",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -104,8 +93,19 @@
                 },
                 {
                     "name": "",
+                    "id": "1d4aca33-55b9-49f0-b7f3-4c5ce83b3c44",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "corda",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "76878791-1755-46b0-9c77-6be0a4db5907",
-                    "path": "<Keyboard>/leftArrow",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

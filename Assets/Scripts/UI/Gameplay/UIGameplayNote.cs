@@ -43,19 +43,19 @@ public class UIGameplayNote : MonoBehaviour {
             case MusicNoteType.Strike:
                 switch (_suitType) {
                     case SuitType.Chord:
-                        animation = "GameplayNotes_strike_yellow";
-                        break;
-                    
-                    case SuitType.Metal:
                         animation = "GameplayNotes_strike_blue";
                         break;
                     
+                    case SuitType.Metal:
+                        animation = "GameplayNotes_strike_yellow";
+                        break;
+                    
                     case SuitType.Wood:
-                        animation = "GameplayNotes_strike_purple";
+                        animation = "GameplayNotes_strike_green";
                         break;
                     
                     case SuitType.Percussion:
-                        animation = "GameplayNotes_strike_green";
+                        animation = "GameplayNotes_strike_purple";
                         break;
                 }
                 break;
@@ -63,19 +63,19 @@ public class UIGameplayNote : MonoBehaviour {
             case MusicNoteType.Avoid:
                 switch (_suitType) {
                     case SuitType.Chord:
-                        animation = "GameplayNotes_avoid_yellow";
-                        break;
-                    
-                    case SuitType.Metal:
                         animation = "GameplayNotes_avoid_blue";
                         break;
                     
+                    case SuitType.Metal:
+                        animation = "GameplayNotes_avoid_yellow";
+                        break;
+                    
                     case SuitType.Wood:
-                        animation = "GameplayNotes_avoid_purple";
+                        animation = "GameplayNotes_avoid_green";
                         break;
                     
                     case SuitType.Percussion:
-                        animation = "GameplayNotes_avoid_green";
+                        animation = "GameplayNotes_avoid_purple";
                         break;
                 }
                 break;

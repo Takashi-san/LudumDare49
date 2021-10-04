@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 public class GameplayManager : MonoBehaviour
 #if DEBUG
     , IDebugable
@@ -37,7 +38,8 @@ public class GameplayManager : MonoBehaviour
     [SerializeField, FMODUnity.EventRef] string _preRunningSound;
     [SerializeField, FMODUnity.EventRef] string _goodFeedback;
     [SerializeField, FMODUnity.EventRef] string _fakeNoteFeedback;
-    [SerializeField, FMODUnity.EventRef] string[] _badFeedback; 
+    [SerializeField, FMODUnity.EventRef] string[] _badFeedback;
+    [SerializeField] TextMeshProUGUI _timerText;
     int _currentLife;
 
     void AddPoints(int points)
@@ -138,8 +140,12 @@ public class GameplayManager : MonoBehaviour
         {
             case GameState.PRE_RUNNING:
                 _timer -= Time.deltaTime;
+                _timerText.text = ((int)_timer).ToString();
                 if (_timer < 0)
+                {
+                    _timerText.gameObject.SetActive(false);
                     SetState(GameState.RUNNING);
+                }
                 break;
             case GameState.RUNNING:
                 AudioManager.Instance.GetTrack(AudioManager.EAudioLayer.MUSIC).EventInstance.getTimelinePosition(out int timelinePosition);

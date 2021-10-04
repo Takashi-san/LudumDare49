@@ -2,10 +2,10 @@
 #region MusicSheet
 
 public enum SuitType {
-    Chord,
-    Metal,
     Wood,
-    Percussion
+    Metal,
+    Percussion,
+    Chord
 }
 
 public enum MusicNoteType {

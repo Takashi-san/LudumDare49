@@ -39,19 +39,19 @@ public class UIGameplayTimeline : MonoBehaviour {
     void SetupLine() {
         switch (_suitType) {
             case SuitType.Chord:
-                _image.sprite = _yellowLine;
-                break;
-            
-            case SuitType.Metal:
                 _image.sprite = _blueLine;
                 break;
             
+            case SuitType.Metal:
+                _image.sprite = _yellowLine;
+                break;
+            
             case SuitType.Wood:
-                _image.sprite = _purpleLine;
+                _image.sprite = _greenLine;
                 break;
             
             case SuitType.Percussion:
-                _image.sprite = _greenLine;
+                _image.sprite = _purpleLine;
                 break;
         }
     }

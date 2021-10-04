@@ -47,23 +47,23 @@ public class UIGameplayInput : MonoBehaviour {
     void SetSprite() {
         switch (_suitType) {
             case SuitType.Chord:
-                _sprite = _spriteYellow;
-                _spriteHold = _spriteHoldYellow;
-                break;
-            
-            case SuitType.Metal:
                 _sprite = _spriteBlue;
                 _spriteHold = _spriteHoldBlue;
                 break;
             
+            case SuitType.Metal:
+                _sprite = _spriteYellow;
+                _spriteHold = _spriteHoldYellow;
+                break;
+            
             case SuitType.Wood:
-                _sprite = _spritePurple;
-                _spriteHold = _spriteHoldPurple;
+                _sprite = _spriteGreen;
+                _spriteHold = _spriteHoldGreen;
                 break;
             
             case SuitType.Percussion:
-                _sprite = _spriteGreen;
-                _spriteHold = _spriteHoldGreen;
+                _sprite = _spritePurple;
+                _spriteHold = _spriteHoldPurple;
                 break;
         }
         _image.sprite = _sprite;
