@@ -50,6 +50,8 @@ public class GameplayManager : MonoBehaviour
         {
             OnStageComplete?.Invoke(false);
             SetState(GameState.POS_RUNNING);
+            foreach (MusicianSet m in _musicianSets)
+                m.gameObject.SetActive(false);
         }
     }
 
