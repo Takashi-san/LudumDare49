@@ -25,6 +25,7 @@ public class UIGameplayBoard : MonoBehaviour {
         gameplayManager.OnInputReceived += NewInput;
         gameplayManager._onDestroyNote += DestroyNote;
         gameplayManager._onTimelineChange += MusicProgressUpdate;
+        gameplayManager.OnStageComplete += GameFinished;
 
         SetupTimelines();
         SetupInputs();
@@ -67,4 +68,8 @@ public class UIGameplayBoard : MonoBehaviour {
             _timelineDict[p_suitType].DestroyNote(p_musicNote);
         }
     }
+
+    void GameFinished(bool p_won) {
+        gameObject.SetActive(false);
+    } 
 }

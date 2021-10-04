@@ -11,8 +11,10 @@ public class UIGameplayLifebar : MonoBehaviour {
     void Start() {
         // TODO procurar gameplay manager e dar subscribe.
         GameplayManager gameplayManager = FindObjectOfType<GameplayManager>();
-        if(gameplayManager != null)
+        if(gameplayManager != null) {
             gameplayManager.OnLifeChange += UpdateLife;
+            gameplayManager.OnStageComplete += GameFinished;
+        }
     }
     
     void UpdateLife(int p_life) {
@@ -24,4 +26,8 @@ public class UIGameplayLifebar : MonoBehaviour {
         
         _image.sprite = _sprites[11 - life];
     }
+
+    void GameFinished(bool p_won) {
+        gameObject.SetActive(false);
+    } 
 }
